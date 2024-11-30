@@ -2,7 +2,6 @@ package com.exception.handling.controller;
 
 
 import com.exception.handling.dto.PizzaDTO;
-
 import com.exception.handling.service.PizzaService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,6 @@ public class PizzaController {
     public ResponseEntity<PizzaDTO> createPizza(RequestEntity<PizzaDTO> requestEntity) {
         PizzaDTO dto = requestEntity.getBody();
         PizzaDTO createdPizza = pizzaService.createPizza(dto);
-
-
         System.out.println("Request Headers: " + requestEntity.getHeaders());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPizza);
