@@ -4,6 +4,7 @@ package com.springdata.mapping.repo;
 import com.springdata.mapping.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     public List<Student> findByGuardianName(String guardianName);
 
 
+    // JPQL
     @Query("select s from Student s where s.emailId = ?1")
     public Student getStudentByEmailAddress(String emailId);
 
@@ -29,9 +31,15 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     public String getStudentFirstNameByEmailAddress(String emailId);
 
 
+    // NATIVE QUERY
     @Query(value = "select * from tbl_student s where s.email_address = ?1",
             nativeQuery = true)
     public Student getStudentByEmailAddressNative(String emailId);
+
+
+    @Query(value = "select * from tbl_student s where s.email_address = :emailId",
+            nativeQuery = true)
+    public Student getStudentByEmailAddressNativeNamed(@Param("emailId") String emailID);
 
 
 }
