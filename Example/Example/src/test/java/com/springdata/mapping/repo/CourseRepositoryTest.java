@@ -3,6 +3,7 @@ package com.springdata.mapping.repo;
 
 import com.springdata.mapping.model.Course;
 import com.springdata.mapping.model.CourseMaterial;
+import com.springdata.mapping.model.Student;
 import com.springdata.mapping.model.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,5 +103,32 @@ class CourseRepositoryTest {
         List<Course> courses = courseRepository.findAll(sortByCreditDesc).getContent();
         System.out.println("courses = " + courses);
     }
+
+
+    @Test
+    public void saveCourseWithStudentAndTeacher() {
+        Teacher teacher = Teacher.builder()
+                .firstName("Varma")
+                .lastName("J")
+                .build();
+
+        Course course = Course.builder()
+                .title("AI")
+                .credit(45)
+                .teacher(teacher)
+                .build();
+
+        Student student = Student.builder()
+                .firstName("Aravind")
+                .lastName("J")
+                .emailId("aravindaru452")
+                .build();
+
+        course.addStudent(student);
+
+        courseRepository.save(course);
+
+    }
+
 
 }

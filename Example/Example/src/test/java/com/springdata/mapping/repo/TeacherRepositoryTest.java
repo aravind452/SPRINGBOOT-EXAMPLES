@@ -1,6 +1,5 @@
 package com.springdata.mapping.repo;
 
-import com.springdata.mapping.model.Course;
 import com.springdata.mapping.model.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +15,14 @@ class TeacherRepositoryTest {
 
     @Test
     public void saveTeacher() {
-        Course course1 = Course.builder()
-                .title("English")
-                .credit(56)
-                .build();
-        Course course2 = Course.builder()
-                .title("Java")
-                .credit(6)
-                .build();
+//        Course course1 = Course.builder()
+//                .title("English")
+//                .credit(56)
+//                .build();
+//        Course course2 = Course.builder()
+//                .title("Java")
+//                .credit(6)
+//                .build();
         Teacher teacher = Teacher.builder()
                 .firstName("gupta")
                 .lastName("j")
@@ -32,6 +31,19 @@ class TeacherRepositoryTest {
 
 
         teacherRepository.save(teacher);
+    }
+
+
+    @Test
+    public void saveTeacher1() {
+        Teacher teacher = Teacher.builder()
+                .firstName("sharma")
+                .lastName("j")
+                .build();
+
+
+        teacherRepository.save(teacher);
+
     }
 
 }
